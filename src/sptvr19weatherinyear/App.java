@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sptvr19weatherinyear;
 
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- * @author Melnikov
- */
-class App {
-    public void run(){
-        //Создаем зубчатый массив для хранения дней года
+public class App {
+
+    public static void run(){
+        int random2;
+        int sum;
+        int sum0;
+        int mitT;
+        int sum1;
+        double[] myArr = new double[31];
+        int[] myArr2 = new int[12];
+        int sa;
         byte n = 0, min = 0, max = 0;
         Random random = new Random();
         int[][] tempInYear = new int[12][];
@@ -35,10 +34,13 @@ class App {
             }
             tempInYear[i] = new int[n];
             for(byte j = 0; j < tempInYear[i].length;j++){
-                tempInYear[i][j]= random.nextInt(max - min +1) + min;
+                random2 = random.nextInt(max - min +1) + min;
+                tempInYear[i][j]= random2;
+                System.out.println(random2);
+                myArr[j] = random2;
+                myArr2[i] += random2;
             }
         }
-        //Вывод температуры по месяцам
         System.out.print("    ");
         for(int i= 1;i<32;i++){
             System.out.printf("%4d",i);
@@ -67,5 +69,11 @@ class App {
         System.out.print("Введите месяц: "); int month = scanner.nextInt();
         System.out.print("Введите день месяца: "); int day = scanner.nextInt();
         System.out.println("В этот день было температура: "+tempInYear[month-1][day-1]+" градус");
+       
+        for (int x = 0; x < myArr2.length; x++) {
+           
+        System.out.println("Средняя температура в " + (x+1) + " месяце " + myArr2[x] / tempInYear[x].length);
+        }          
+       
     }
 }
